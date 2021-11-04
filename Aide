@@ -155,3 +155,39 @@ const instance2 = new Vue({
 //     },
 // },
 // });
+// ------------------------------------------------------------------------------------------------------------------------------------------
+// Vue COMPONENT
+
+// On peut utiliser des méthods et des données mais dans le data d'une vue
+// Mais dans data on retourne une function qui retourne un objet qui seront nos donner
+// Dans une instance data est unn objet directement
+
+{/* <div id="mon-app1">
+<mon-premier-composant></mon-premier-composant>
+<mon-premier-composant></mon-premier-composant>
+</div>
+
+<div id="mon-app2">
+<h1>{{txt}}</h1>
+<button v-on:click="func1">Modifier Instance 1</button>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+<script>
+Vue.component("mon-premier-composant", {
+  template:
+    '<p>Mon premier composant {{nom}} <button v-on:click="changementNom">Changement</button> </p>',
+  data: function () {
+    return {
+      nom: "John Wick",
+    };
+  },
+  methods: {
+    changementNom: function () {
+      this.nom = "Jack Bauer";
+    },
+  },
+});
+
+Mon premier composant Jack Bauer Changement
+
+Mon premier composant John Wick Changement */}

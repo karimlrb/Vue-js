@@ -7,7 +7,10 @@
     <title>Vue JS Playground</title>
   </head>
   <body>
-    <div id="mon-app1"></div>
+    <div id="mon-app1">
+      <mon-premier-composant></mon-premier-composant>
+      <mon-premier-composant></mon-premier-composant>
+    </div>
 
     <div id="mon-app2">
       <h1>{{txt}}</h1>
@@ -15,18 +18,27 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
     <script>
+      Vue.component("mon-premier-composant", {
+        template:
+          '<p>Mon premier composant {{nom}} <button v-on:click="changementNom">Changement</button> </p>',
+        data: function () {
+          return {
+            nom: "John Wick",
+          };
+        },
+        methods: {
+          changementNom: function () {
+            this.nom = "Jack Bauer";
+          },
+        },
+      });
+
       const instance1 = new Vue({
-        template: `<h1>{{txt}}</h1>`,
+        el: "#mon-app1",
         data: {
           txt: "Hello APP1",
         },
       });
-      // On crée l'instance plus haut
-      // On monte l'instance avec .$mount
-      //l'ajoute ou on veut avec du js/ .$el est l'instance qu'on vient de crée
-      instance1.$mount();
-      document.getElementById("mon-app1").appendChild(instance1.$el);
-
       const instance2 = new Vue({
         el: "#mon-app2",
         data: {
