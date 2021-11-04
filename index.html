@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vue JS Playground</title>
+    <style>
+      .box {
+        width: 250px;
+        height: 250px;
+        border: 1px solid black;
+      }
+      .red {
+        background-color: crimson;
+      }
+      .bordure {
+        border: 10px solid rebeccapurple;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mon-app">
+      <h1>Vue Js Cours</h1>
+      <button v-on:click="toggleBox = !toggleBox">Toggle la couleur</button>
+      <div v-if="toggleBox" class="box red"></div>
+      <p v-else="toggleBox">Sinon</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script>
+      new Vue({
+        el: "#mon-app",
+        data: {
+          toggleBox: true,
+        },
+      });
+    </script>
+  </body>
+</html>
