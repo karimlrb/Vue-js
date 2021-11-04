@@ -5,33 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue JS Playground</title>
-    <style>
-      .box {
-        width: 250px;
-        height: 250px;
-        border: 1px solid black;
-      }
-      .red {
-        background-color: crimson;
-      }
-      .bordure {
-        border: 10px solid rebeccapurple;
-      }
-    </style>
   </head>
   <body>
-    <div id="mon-app">
-      <h1>Vue Js Cours</h1>
-      <button v-on:click="toggleBox = !toggleBox">Toggle la couleur</button>
-      <div v-if="toggleBox" class="box red"></div>
-      <p v-else="toggleBox">Sinon</p>
+    <div id="mon-app1"></div>
+
+    <div id="mon-app2">
+      <h1>{{txt}}</h1>
+      <button v-on:click="func1">Modifier Instance 1</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
     <script>
-      new Vue({
-        el: "#mon-app",
+      const instance1 = new Vue({
+        template: `<h1>{{txt}}</h1>`,
         data: {
-          toggleBox: true,
+          txt: "Hello APP1",
+        },
+      });
+      // On crée l'instance plus haut
+      // On monte l'instance avec .$mount
+      //l'ajoute ou on veut avec du js/ .$el est l'instance qu'on vient de crée
+      instance1.$mount();
+      document.getElementById("mon-app1").appendChild(instance1.$el);
+
+      const instance2 = new Vue({
+        el: "#mon-app2",
+        data: {
+          txt: "Hello APP2",
+        },
+        methods: {
+          func1: function () {
+            instance1.txt = "Je t'ai modifiée";
+          },
         },
       });
     </script>
