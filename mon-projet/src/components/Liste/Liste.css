@@ -1,6 +1,6 @@
 .liste {
   background-color: lightblue;
-}
-p {
-  color: red;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }
