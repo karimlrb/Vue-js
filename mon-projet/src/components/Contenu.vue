@@ -1,9 +1,9 @@
 <template>
-    <div>
+    <div class="container mt-5">
         <p>
         {{txt}}
         </p>
-        <liste></liste>
+        <liste v-bind:prenom="prenom"></liste>
     </div>
 </template>
 
@@ -16,7 +16,10 @@
         name:'Contenu',
         data:function(){
             return{
-                txt: 'Je suis le contenu'
+                txt: 'Je suis le contenu',
+                prenom: function(){
+                    console.log("Hello from Parent");
+                }
             }
         },
         components: {
