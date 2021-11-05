@@ -2,12 +2,11 @@
     <div class="container mt-5">
 
         <h1>{{titre}}</h1>
-        <div class="btn btn-outline-primary me-2" v-on:click="toggleOng1">Onglet 1</div>
-        <div class="btn btn-outline-primary " v-on:click="toggleOng2">Onglet 2</div>
+        <div class="btn btn-outline-primary me-2" v-on:click="component ='texte1'">Onglet 1</div>
+        <div class="btn btn-outline-primary " v-on:click="component='texte2'">Onglet 2</div>
 
         <div class="onglets card mb-5">
-            <texte1 class="p-4" v-if="toggle1"></texte1>
-            <texte2 class="p-4" v-if="toggle2">></texte2>
+            <component class="p-4" v-bind:is="component"></component>
         </div>
 
        
@@ -35,7 +34,8 @@
                 txt:"Les Affranchis", 
                 titre:"Je suis le Titre",
                 toggle1:true,
-                toggle2:false 
+                toggle2:false,
+                component: 'texte1' 
             }
         },
         methods: {
