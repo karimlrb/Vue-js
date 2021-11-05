@@ -1,20 +1,3 @@
-// Etape pour créé un composant Modale
-// |
-// 1. Crée le Modale.vue dans les fichiers
-// 2. Rajouter template et créer le button dedans, script et style dans le modale
-// 3. Export le composant avec export default avec le nom du composant {name:'Modale'}
-// 4. Importer le modale dans le parent où il est use avec import Modale from './Modale.vue'
-// 5. Rajouter le composant des les components :   components: {
-            'texte1':Texte1,
-            'texte2':Texte2,
-            'modale':Modale
-        },}
-// 6. Créer la balise dans la vue au dessus <modale></modale>
-
-// Créer Les props et les passer à l'enfant
-// ||
-// Créer les props dans un tableau dans l'enfant  props:['revel', 'togglModale']
-
 // ----------------------------------------------------------------------
 // Etape pour créé un composant Modale Coorection
 // |
@@ -73,9 +56,11 @@
     top: 10px;
     right: 10px;
 }
-9. Créer revele dans le parent   revele:false,
-10. Dans le parent on bind     <modale v-bind:revele="revele"></modale>
+9. Créer revele dans les data du parent   revele:false,
+10. Dans le parent on bind pour pouvoir l'utiliser dans l'enfant
+    <modale v-bind:revele="revele"></modale>
 11. Dans l'enfant -> <div class="bloc-modale" v-if="revele">
+POur l'activer que so revele = true (de base il est false)
 12. Créer notre button dans le parent et lui ajouter v-on
  <div v-on:click="togglModale" class="btn btn-success">Ouvrir la modale</div>
  13. Créer la méthode Toggle modale dans methods
@@ -93,3 +78,36 @@ C'est pareille que pour le revele (10.)
  <div v-on:click="toggleModale" class="overlay"></div>
 
      <div v-on:click="toggleModale" class="btn-modale btn btn-danger">x</div>
+
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+Etape pour utiliser une api avec axios
+1. installer axios -> npm install axios
+2. Aller dans export default{} et utiliser grace a mounted
+Ici le get va chercher les données de l'API "cat"
+  mounted(){
+            axios
+            .get('https://api.thecatapi.com/v1/images/search') 
+        }
+Ensuite on utilise then 
+             mounted(){
+            axios
+            .get('https://api.thecatapi.com/v1/images/search')
+            .then(reponse => {
+                console.log(reponse);
+            }) 
+        }
+On a envie de mettre dans des données ce que l'on recupère
+ urlImg: null,
+Ensuite on revient à mounted au lieu du log on recupere l'url dans data index 0 -> url 
+  mounted(){
+            axios
+            .get('https://api.thecatapi.com/v1/images/search')
+            .then(reponse => {
+               this.urlImg = reponse.data[0].url;
+            }) 
+        }
+3. Attention quand on lie les données à la balise <img> ne pas se tromper
+On lie la src de l'image à l'url récupérée
+<img v-bind:src="urlImg" >

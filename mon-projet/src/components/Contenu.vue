@@ -10,7 +10,8 @@
         </div>
         <!-- <modale  v-bind:revel="revel"></modale> -->
         <modale v-bind:revele="revele" v-bind:toggleModale="toggleModale"></modale>
-        <div v-on:click="toggleModale" class="btn btn-success">Ouvrir la modale</div>
+        <div v-on:click="toggleModale" class="btn btn-success">Ouvrir la modale</div><br>
+        <img style="width:350px" class="mt-5" v-bind:src="urlImg" >
        
         
         
@@ -20,6 +21,9 @@
 
 
 <script>
+
+    import axios from'axios'
+
     import Modale from './Modale.vue'
     import Texte1 from './Texte1'
     import Texte2 from './Texte2'
@@ -28,6 +32,7 @@
         name:'Contenu',
         data:function(){
             return{
+                urlImg: null,
                 myArr: [
                     {titre: "Inception", date:2010},
                     {titre: "Avatar", date:2009},
@@ -59,6 +64,13 @@
             'texte2':Texte2,
             'modale':Modale
         },
+        mounted(){
+            axios
+            .get('https://api.thecatapi.com/v1/images/search')
+            .then(reponse => {
+               this.urlImg = reponse.data[0].url;
+            }) 
+        }
     }
 
 </script>
