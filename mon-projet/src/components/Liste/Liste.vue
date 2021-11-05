@@ -14,10 +14,14 @@
    <div class="btn btn-danger mt-2 ms-5" v-on:click="deleteText">Supprimer le Texte</div>
    <div class="btn btn-primary mt-2 ms-5" v-on:click="changeTitre">Changer le Titre</div>
     
+    <slot>Patientez</slot>
+    <slot name="info"></slot>
 </div>
 </template>
 
 <script>
+
+import {bus} from '../../main'
 
 export default {
     name:'Liste',
@@ -35,7 +39,8 @@ export default {
             this.txt=""
         },
         changeTitre: function(){
-            this.$emit('changeTitre', "Mon nouveau Titre")
+            // this.$emit('changeTitre', "Mon nouveau Titre")
+            bus.$emit('changeTitre', 'Titre changé avec le bus !')
         }
     },
     props:['myArr', 'txt'], 

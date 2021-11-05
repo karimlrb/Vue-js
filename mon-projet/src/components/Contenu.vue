@@ -3,7 +3,12 @@
 
         <h1>{{titre}}</h1>
 
-        <liste v-bind:myArr="myArr"  :txt="txt" v-on:changeTitre="ChangementTitre($event)"></liste>
+        <liste v-bind:myArr="myArr"  :txt="txt">
+             <p>Envoyez</p> 
+             <template v-slot:info>
+                 <h1>Le contenu du slot nommé</h1>
+             </template>
+        </liste>
     </div>
 </template>
 
@@ -22,13 +27,12 @@
                     {titre: "Seven", date:1995}
                 ], 
                 txt:"Les Affranchis", 
-                titre:"I am the Title", 
+                titre:"Je suis le Titre", 
             }
         },
         methods: {
-            ChangementTitre: function(nvTitre){
-                this.titre = nvTitre;
-            }},
+         
+         },
         components: {
         'liste':Liste
         },
@@ -37,4 +41,10 @@
 </script>
 
 
-<style></style>
+<style>
+
+    h1{
+        margin-top: 100px!important;
+    }
+
+</style>
