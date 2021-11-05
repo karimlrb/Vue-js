@@ -5,13 +5,12 @@
         <div class="btn btn-outline-primary me-2" v-on:click="toggleOng1">Onglet 1</div>
         <div class="btn btn-outline-primary " v-on:click="toggleOng2">Onglet 2</div>
 
-        <div class="onglets card mb-5" v-if="toggle1">
-            <texte1 class="p-4"></texte1>
+        <div class="onglets card mb-5">
+            <texte1 class="p-4" v-if="toggle1"></texte1>
+            <texte2 class="p-4" v-if="toggle2">></texte2>
         </div>
 
-        <div class="onglets card mb-5" v-if="toggle2">
-            <texte2 class="p-4">></texte2>
-        </div>
+       
         
         
     
