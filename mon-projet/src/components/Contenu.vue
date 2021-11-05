@@ -8,7 +8,9 @@
         <div class="onglets card mb-5">
             <component class="p-4" v-bind:is="component"></component>
         </div>
-
+        <!-- <modale  v-bind:revel="revel"></modale> -->
+        <modale v-bind:revele="revele" v-bind:toggleModale="toggleModale"></modale>
+        <div v-on:click="toggleModale" class="btn btn-success">Ouvrir la modale</div>
        
         
         
@@ -18,7 +20,7 @@
 
 
 <script>
-
+    import Modale from './Modale.vue'
     import Texte1 from './Texte1'
     import Texte2 from './Texte2'
 
@@ -35,7 +37,8 @@
                 titre:"Je suis le Titre",
                 toggle1:true,
                 toggle2:false,
-                component: 'texte1' 
+                component: 'texte1',
+                revele:false,
             }
         },
         methods: {
@@ -46,11 +49,15 @@
          toggleOng2: function(){
              this.toggle1 = false;
              this.toggle2 = true;
+         },
+         toggleModale:function(){
+             this.revele = !this.revele
          }
         },
         components: {
             'texte1':Texte1,
-            'texte2':Texte2
+            'texte2':Texte2,
+            'modale':Modale
         },
     }
 
