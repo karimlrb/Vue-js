@@ -82,7 +82,7 @@ C'est pareille que pour le revele (10.)
 -----------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------
 -----------------------------------------------------------------------------------------------
-Etape pour utiliser une api avec axios
+||  Etape pour utiliser une api avec axios
 1. installer axios -> npm install axios
 2. Aller dans export default{} et utiliser grace a mounted
 Ici le get va chercher les données de l'API "cat"
@@ -111,3 +111,113 @@ Ensuite on revient à mounted au lieu du log on recupere l'url dans data index 0
 3. Attention quand on lie les données à la balise <img> ne pas se tromper
 On lie la src de l'image à l'url récupérée
 <img v-bind:src="urlImg" >
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------
+
+||| Formulaire, comment relier un input et un textarea grace à v-model
+----------------------------------------------------------------
+On a notre form 
+ <div class="form-group">
+    <label for="prenom">Votre prénom</label>
+    <input v-model="prenom" type="text" id="prenom" class="form-control">
+</div>
+
+<div class="form-group">
+    <label for="txt">Votre Texte</label>
+    <textarea v-model="monTxt" id="txt" class="form-control" ></textarea>
+</div>
+1. On créer nos data
+ prenom:"",
+ monTxt:""
+
+2. Les relier avec nos input et textarea grace a v-model 
+
+<input v-model="prenom" type="text" id="prenom" class="form-control">
+
+<textarea v-model="monTxt" id="txt" class="form-control" ></textarea>
+
+3. Les afficher où on veut
+   <div class="card p-3">
+        <p>Pénom : {{prenom}} </p>
+        <p>Texte : {{monTxt}}  </p>
+    </div>
+4. On créer un objet formData pour être plus propre
+     formData:{
+        prenom:"",
+        monTxt:""
+    }
+Par contre maintenant on remplace prenom par formData.prenom etc PARTOUT
+    <div class="form-group">
+----------><label for="prenom">Votre prénom</label>
+        <input v-model="formData.prenom" type="text" id="prenom" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label for="txt">Votre Texte</label>
+----------><textarea v-model="formData.monTxt" id="txt" class="form-control" ></textarea>
+    </div>
+
+    <h2>Résultats</h2>
+
+    <div class="card p-3">
+----------><p>Pénom : {{formData.prenom}} </p>
+----------><p>Texte : {{formData.monTxt}}  </p>
+    </div>
+5. v-model.lazy affiche les données qu'on écrit uniquement après un click
+6. v-model.number change le type de ce qu'on écrit(string) en number
+7. Si on veut conserver la presentation dans le textarea
+<p style="white-space: pre">Texte : {{formData.monTxt}}  </p>
+
+|||| Formulaire, checkbox
+----------------------------------------------------------------
+Utiliser les checkbox
+1. On crée les checkbox (3)
+<div class="form-check">
+    <input
+        value="mangue"
+        id="mangue"
+        type="checkbox"
+        class="form-check-input"
+    />
+    <label for="mangue">mangue</label>
+    </div>
+2. On les rajoutes dans formData
+  formData: {
+    prenom: "",
+    monTxt: "",
+    checkFruits:[]
+},
+3. On les rajoutes dans les inputs avec v-model grace a value
+  <input v-model="formData.checkfruits".....>
+4.A chaque click grace a value on rajoute les fruits dans le tableau vide checkfruits[]
+On utilise un v-for
+On créer un ul avec des li
+  <p>Résultats checkbox</p>
+        <ul>
+          <li  v-for="(fruit) in formData.checkFruits">
+            {{ fruit }}
+          </li>
+        </ul>
+Ici erreur car il manque v-bind:key
+   <li v-bind:key="index" v-for="(fruit, index) in formData.checkFruits">
+----------------------------------------------------------------
+Utiliser les checkbox
+1.
+<select>
+    <option></option>
+</select>
+1.1
+ <select v-model="formData.select">
+Le v-model
+
+2.
+select: "",
+listePays: ["Russie", "Japon", "Canada", "Mexique"],
+3.
+<option v-bind:key="index" v-for="(pays, index) in formData.listePays">
+4.
+Ne pas oublier le v-model
+ <select v-model="formData.select"> Oublie pas !!!!!!!!
+5.
+<p>Choix du Select : {{ formData.select }}</p>
