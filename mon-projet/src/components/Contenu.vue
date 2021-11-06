@@ -25,6 +25,7 @@
       <div class="form-group">
         <label for="prenom">Votre prénom</label>
         <input
+          v-on:input="toggleResult"
           v-model="formData.prenom"
           type="text"
           id="prenom"
@@ -84,6 +85,12 @@
         <label for="cerise">Cerise</label>
       </div>
 
+      <button v-on:click.prevent="envoiForm" class="btn btn-primary mt-3">
+        Envoyez les données
+      </button>
+    </form>
+
+    <div v-if="infoSubmit">
       <h2 class="mt-3">Résultats</h2>
 
       <div class="card p-3">
@@ -100,7 +107,7 @@
 
         <p>Choix du Select : {{ formData.select }}</p>
       </div>
-    </form>
+    </div>
   </div>
 </template>
 
@@ -135,6 +142,7 @@ export default {
         select: "",
         listePays: ["Russie", "Japon", "Canada", "Mexique"],
       },
+      infoSubmit: false,
     };
   },
   methods: {
@@ -148,6 +156,12 @@ export default {
     },
     toggleModale: function () {
       this.revele = !this.revele;
+    },
+    envoiForm: function () {
+      this.infoSubmit = true;
+    },
+    toggleResult: function () {
+      this.infoSubmit = false;
     },
   },
   components: {

@@ -202,7 +202,7 @@ On créer un ul avec des li
 Ici erreur car il manque v-bind:key
    <li v-bind:key="index" v-for="(fruit, index) in formData.checkFruits">
 ----------------------------------------------------------------
-Utiliser les checkbox
+Utiliser les Select
 1.
 <select>
     <option></option>
@@ -221,3 +221,22 @@ Ne pas oublier le v-model
  <select v-model="formData.select"> Oublie pas !!!!!!!!
 5.
 <p>Choix du Select : {{ formData.select }}</p>
+----------------------------------------------------------------
+Envoyez les données
+1. le button 
+<button class="btn btn-primary mt-3">Envoyez les données</button>
+2.  <div v-if="infoSubmit"> Dans la div qui affiche les resultats
+3. On creer infoSubmit en dehors de formData
+infoSubmit:false
+4. Dès qu'on click sur le button on veut activer une method qui va faire passer infoSubmit a true
+ <button v-on:click="envoiForm" class="btn btn-primary mt-3">Envoyez les données</button>
+5. Créer la method envoiForm
+  envoiForm: function () {
+      this.infoSubmit = true;
+    },
+Sauf que les infos partent à cause du comportement par defaut donc on use .prevent sur le v-on:click
+    <button v-on:click.prevent="envoiForm" class="btn btn-primary mt-3">
+6. A ce stade ca marche mais dès qu'on click on peut continuer a changer les données
+On crée une method qui repasse infoSubmit a false des quon a rempli in unput
+ v-on:input="toggleResult" Dans l'input et on crée la method toggleResult
+
